@@ -55,7 +55,8 @@
 	# 查看做了哪些修改
 	git diff
 	
-		$ git diff readme.txt 
+		# 查看工作区与暂存区的不同
+		$ git diff readme.txt  
 		diff --git a/readme.txt b/readme.txt
 		index 46d49bf..9247db6 100644
 		--- a/readme.txt
