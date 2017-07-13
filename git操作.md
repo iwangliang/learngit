@@ -174,4 +174,48 @@
 	git merge --no-ff -m "merge with no-ff" dev
 	
 
+## 关于 bug分支
+
+	如果你在 work分支愉快的干活，突然，出了一个bug.需要你马上解决，但是你又不能 commit 代码，因为功能没完成。这时你需要
+	#  保存现场
+	git stash 
+	然后 git status 你会发现你的工作区干净了，然后切到主分支，新建一个bug 分支来处理bug
+	git checkout master 
+	git checkout -b bug_1
+	# 处理完bug add commit
+	git add ..
+	git commit -m 'xxx'
+	# 切到主分支，合并
+	git checkout master
+	git merge -no-ff -m '合并bug分支' bug_1
+	# 完事，又该回去work分支工作了
+	git checkout work
+	# 很干净
+	git status
+	# 隐藏列表
+	git stash list
+	# 恢复空间
+	git stash apply stash@{0}
+	#　删除以前的保存
+	git stash drop
+	#　以上两步可以一步
+	git stash pop
+	
+	又可以愉快的工作了
+
+## 关于Feature分支
+
+	#又来新需求了，新建一个 new_feature分支
+	git checkout -b new_feature
+	# 然后各种开发，完成commit
+	# 回到主分支，要合并了
+	git checkout master
+	git merge --no-ff -m '合并新功能' new_feature
+	# 上面操作还没进行，突然不要这个功能了
+	# 删除分支
+	git branch -d new_feature
+	# git 会阻止你，因为该分支还没有合并
+	# 这时你需要强行删除
+	git branch -D new_feature
+
 	
