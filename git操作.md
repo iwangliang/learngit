@@ -218,4 +218,12 @@
 	# 这时你需要强行删除
 	git branch -D new_feature
 
-	
+## 多人协作
+	# 查看远程库信息
+	git remote 
+	# 详细信息
+	git remote -v
+
+	# 推送分支
+	git push origin master 将master 分支推送到远端
+	git push origin dev 将dev 分支推送到远端
