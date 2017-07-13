@@ -227,3 +227,16 @@
 	# 推送分支
 	git push origin master 将master 分支推送到远端
 	git push origin dev 将dev 分支推送到远端
+	
+	# 从远程库克隆之后默认是 master 分支
+	# 本地创建dev 与远端关联 ,如果远端没有，则会报错，先在远端建立该分支
+	git checkout -b dev origin/dev
+	# 提交完了推送到远端
+	git push origin dev
+	# 如果推送出错则有冲突，先 pull 解决冲突
+	git pull
+	# 如果pull 也有问题，说明你的dev 没有与远端建立关系,先建立关系，再pull
+	git branch --set-upstream dev origin/dev
+
+	如果你在本地的work分支上开发,远程的master 修改了，而你不得不更新，这时你切到master pull 之后，master 是最新代码，但是切到work分支，代码不是最新的，建议merge 主分支，拿到最新代码继续开发
+
