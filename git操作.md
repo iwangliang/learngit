@@ -242,3 +242,35 @@
 
 	如果你在本地的work分支上开发,远程的master 修改了，而你不得不更新，这时你切到master pull 之后，master 是最新代码，但是切到work分支，代码不是最新的，建议merge 主分支，拿到最新代码继续开发
 
+## 忽略文件
+
+[github上的忽略文件](https://github.com/github/gitignore)
+
+	新建一个 .gitignore文件，例如Android上写上
+		
+	*.iml
+	.gradle
+	/local.properties
+	/.idea/workspace.xml
+	/.idea/libraries
+	.DS_Store
+	/build
+	/captures
+	.externalNativeBuild
+	
+
+	如果在操作时出现下面这种情况，则说明你要添加的文件被忽略了
+
+	$ git add test.iml
+	The following paths are ignored by one of your .gitignore files:
+	test.iml
+	Use -f if you really want to add them.
+
+	你还可以通过以下命令来查看是哪条 .ignore 写错了
+	
+	$ git check-ignore -v test.iml
+	.gitignore:1:*.iml      test.iml
+
+	如果你确实想加入他，那么
+	git add -f test.iml
+	
