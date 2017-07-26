@@ -275,4 +275,15 @@
 	git add -f test.iml
 
 
-	
+## 一些问题
+
+1. .gitignore 文件不生效
+
+
+		# 删除缓存(注意后面有个 '.' 下同)
+		git rm -r --cached .
+		# 重新添加
+		git add .
+		# 重新提交
+		git commit -m 'update.gitignore'
+ 
