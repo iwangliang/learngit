@@ -274,6 +274,40 @@ rew# git 操作
 	如果你确实想加入他，那么
 	git add -f test.iml
 
+## 关于标签
+1. 为啥要标签
+
+		commit 也能找到版本对应的版本，但是是一串乱七八糟的数据，tag 可以打上有意义的名字
+2. 操作
+
+
+		# 显示所有标签
+		git tag   
+		# 直接打上标签
+		git tag v1.0 
+		
+		如果昨天提交的，忘了打包，今天又提交了
+		# 先看提交记录
+		git log --pretty=oneline --abbrev-commit
+		# 找到对应的 commitid 然后打标签
+		git tag v0.9 6224937
+		# 某个标签的详细信息
+		git show v0.9
+		# 打标签时加上说明
+		git tag -a v0.9 -m '我是说明' 3628164
+
+		# 删除标签
+		git tag -d v0.9
+		
+		标签只会保存到本地，如果要推送的远端
+		# 推送标签到远端
+		git push origin v0.9
+		# 一次推送所有的本地标签
+		git push origin --tags
+		# 删除远端标签
+		git tag -d v0.9 // 先删除本地的
+		git push origin :refs/tags/v.09  // 推送到远端
+
 
 ## 一些问题
 
