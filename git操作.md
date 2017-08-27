@@ -1,4 +1,4 @@
-rew# git 操作 
+# git 操作 
 ## 用户信息
 - 设置信息 
 
@@ -26,7 +26,8 @@ rew# git 操作
 		我们需要删除以前的默认名的密钥，生成新的密钥
 		rm ~/.ssh/id_rsa.pub
 		rm ~/.ssh/id_rsa
-		ssh-keygen -t rsa -C "your-email-address" -f "rsa_name"
+		ssh-keygen -t rsa -C "your-email-address"
+		然后它会让你输入保存的位置，前面有提示，照着写
 
 		设置 ssh config ，使ssh 知道什么域名由什么密钥去处理
 		#Default Git
@@ -35,9 +36,22 @@ rew# git 操作
 		User think
 		IdentityFile ~/.ssh/rsa_name
 
+		比如
+		Host guawazi.github.com
+			HostName github.com
+			User git
+			PreferredAuthentications publickey
+			IdentityFile ~/.ssh/id_rsa_guawazi
+		Host git.duozhuan.cn
+			HostName git.duozhuan.cn
+        	User git
+        	PreferredAuthentications publickey
+        	IdentityFile ~/.ssh/id_rsa_duozhuan
+
 		执行ssh-agent bash让ssh识别新的私钥。
 		ssh-add ~/.ssh/rsa_name
-
+		ssh-add -l 查看添加的ssh 列表
+		
 ## 创建版本库
 
 	$ mkdir learngit
