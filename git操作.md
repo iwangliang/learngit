@@ -334,4 +334,12 @@
 		git add .
 		# 重新提交
 		git commit -m 'update.gitignore'
+		
+2. 权限拒绝问题
+
+	1. 检查公钥是否存在服务器
+	2. 当本地管理多个公钥时，查看
+
+			ssh-add -l // 如果没有则
+			ssh-add rsa_name
  
