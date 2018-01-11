@@ -33,6 +33,71 @@
 
 
 ## Rxjava
+
+### 创建类操作符
+1. [create](https://mcxiaoke.gitbooks.io/rxdocs/content/operators/Create.html)
+
+		private static Observable<String> createObservale() {
+		        return Observable.create(new ObservableOnSubscribe<String>() {
+		            @Override
+		            public void subscribe(ObservableEmitter<String> observableEmitter) throws Exception {
+		                if (!observableEmitter.isDisposed()) {
+		                    observableEmitter.onNext("第一个");
+		                    observableEmitter.onNext("第二个");
+		                    observableEmitter.onNext("第三个");
+		                    observableEmitter.onComplete();
+		                }
+		            }
+		        });
+		    }
+
+
+2. [defer](https://mcxiaoke.gitbooks.io/rxdocs/content/operators/Defer.html)
+
+	- [defer的特点](http://blog.csdn.net/axuanqq/article/details/50687252)
+	- [defer的好处](http://www.jianshu.com/p/c83996149f5b)
+
+		与just(s) 相比，just在创建时就已经固定值了，如果后续更改s 的值，订阅者里面的数据也不会变化，但是 defer 只有在订阅的时候才会拿到 s 的值，建议所有都用 defer 包装起来
+
+3. [Empty/Never/Throw](https://mcxiaoke.gitbooks.io/rxdocs/content/operators/Empty.html)
+
+	- Empty 创建一个不发射任何数据但是正常终止的Observable
+	- never 创建一个不发射数据也不终止的Observable
+	- error 创建一个不发射数据以一个错误终止的Observable
+
+4. [From](https://mcxiaoke.gitbooks.io/rxdocs/content/operators/From.html)
+
+		将其他类型的数据转换为可观察的对象，比如 数组，iterable,future 等等
+
+5. [interval](https://mcxiaoke.gitbooks.io/rxdocs/content/operators/Interval.html)
+
+		创建一个按固定时间间隔发射整数序列的Observable
+			CountDownLatch latch = new CountDownLatch(10);
+	        Observable.interval(0, 2, TimeUnit.SECONDS)
+	                .subscribe(aLong -> {
+	                            System.out.println(aLong);
+	                            latch.countDown();
+	                        },
+	                        Throwable::printStackTrace,
+	                        () -> System.out.println("complete"));
+	        try {
+	            latch.await();
+	        } catch (InterruptedException e) {
+	            e.printStackTrace();
+	        }
+	    }
+	    
+	    注意使用 CountDownLatch
+	    
+6. [just](https://mcxiaoke.gitbooks.io/rxdocs/content/operators/Just.html)
+
+		创建一个发射指定值的Observable,注意是原样发射
+		Just类似于From，但是From会将数组或Iterable的数据取出然后逐个发射，而Just只是简单的原样发射，将数组或Iterable当做单个数据。
+		
+7. [Range](https://mcxiaoke.gitbooks.io/rxdocs/content/operators/Range.html)
+
+		Range操作符发射一个范围内的有序整数序列，你可以指定范围的起始和长度。如果你将第二个参数设为0，将导致Observable不发射任何数据（如果设置为负数，会抛异常）
+
 ### 转换类操作符
 1. map (将一种流转换成另外一种流)
 
@@ -416,3 +481,12 @@
 
 6. SwitchOnNext
 7. join
+
+
+
+
+
+
+# 总结
+1. map 可以将一种类型转换为另外一种类型，可在其中进行一些变化
+2. 

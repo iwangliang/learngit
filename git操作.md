@@ -343,3 +343,6 @@
 			ssh-add -l // 如果没有则
 			ssh-add rsa_name
  
+3. 改变远程仓库地址 	
+
+		git remote set-url origin [url]
